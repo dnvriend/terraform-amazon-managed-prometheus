@@ -1,0 +1,26 @@
+services:
+  grafana:
+      image: grafana/grafana:11.6.0
+      container_name: grafana
+      restart: unless-stopped
+      environment:
+        - GF_AUTH_DISABLE_LOGIN_FORM=false
+        - GF_AUTH_ANONYMOUS_ENABLED=true
+        - GF_AUTH_ANONYMOUS_ORG_ROLE=Admin
+        - GF_AUTH_ANONYMOUS_ORG_NAME=Main Org.
+        - GF_SECURITY_ADMIN_PASSWORD=admin
+        - GF_SECURITY_ADMIN_USER=admin
+        - GF_USERS_ALL0OW_SIGN_UP=false
+        - GF_AUTH_SIGV4_AUTH_ENABLED=true
+        - GF_AWS_SDK_LOAD_CONFIG=true
+        - GF_PLUGINS_PREINSTALL=grafana-amazonprometheus-datasource
+        - AWS_PROFILE=${AWS_PROFILE:-default}
+        - AWS_DEFAULT_REGION=${AWS_REGION:-us-east-1}
+        - AWS_SHARED_CREDENTIALS_FILE=/usr/share/grafana/.aws/credentials
+        - AWS_CONFIG_FILE=/usr/share/grafana/.aws/config
+      volumes:
+        - ./grafana/provisioning:/etc/grafana/provisioning
+        - ./grafana/dashboards:/var/lib/grafana/dashboards
+        - ~/.aws:/usr/share/grafana/.aws:ro
+      ports:
+        - "3000:3000"
