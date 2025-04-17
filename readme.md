@@ -30,3 +30,11 @@ The project includes a Makefile with the following targets:
 - `destroy`: Removes the Amazon Managed Prometheus workspace
 - `generate-datasources`: Generates datasource configurations using Python
 - `clean`: Removes the Grafana directory
+
+
+## Resources
+- https://github.com/aws/amazon-managed-service-for-prometheus-roadmap
+- https://docs.aws.amazon.com/prometheus/latest/userguide/AMP-onboard-query-standalone-grafana.html
+- https://grafana.com/docs/grafana/latest/setup-grafana/configure-grafana/
+- https://grafana.com/docs/grafana/latest/explore/simplified-exploration/metrics/
+- https://grafana.com/docs/grafana/latest/administration/provisioning/#datasources
